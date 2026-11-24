@@ -1,0 +1,14 @@
+name: cantine_mobile
+description: Mes tickets de cantine pour les employés
+publish_to: none
+version: 1.0.0+1
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.19.0
+  http: ^1.2.2
+  flutter_secure_storage: ^9.2.4
+flutter:
+  uses-material-design: true

@@ -1,0 +1,135 @@
+Recettes exécutées : Symfony 8.1.11 / PHP 8.6 / PostgreSQL 18.7.
+Aucune donnée de production utilisée.
+
+OK : installation PostgreSQL
+OK : migration refuse les conflits historiques sans supprimer de ticket
+OK : migration conflictuelle sans modification du schéma
+OK : migration idempotente, ancien ticket expiré réactivé
+OK : anciens tarifs non inventés
+OK : tarifs 700 / 500 / 200
+OK : émission RH sans paiement
+OK : une émission par salarié et par jour : Cet employé a déjà reçu un ticket aujourd’hui, même si celui-ci a été annulé.
+OK : anciens tarifs inconnus bloqués : Ancien ticket à régulariser par la RH : catégorie tarifaire manquante.
+OK : ticket ancien consommé plusieurs années après émission
+OK : absence bloquée : Travailleur déclaré absent sur cette période.
+OK : aucun paiement après refus
+OK : salarié désactivé bloqué : Travailleur désactivé.
+OK : mauvaise catégorie refusée : Choisissez un plat au menu du jour de la catégorie du ticket.
+OK : double encaissement refusé : Ticket déjà utilisé.
+OK : consommation et paiement uniques
+OK : tarifs 1000 / 700 / 300
+OK : horaire nuit rattaché au jour précédent
+OK : hors quart de nuit bloqué
+OK : absence prioritaire sur quart de nuit
+OK : absence de planning bloquée : Hors période de travail autorisée : vérifiez le type horaire, les affectations et les plages.
+OK : pas de réémission après annulation : Cet employé a déjà reçu un ticket aujourd’hui, même si celui-ci a été annulé.
+OK : totaux financiers par date de paiement, y compris ticket ancien
+OK : tickets délivrés filtrés par date émission
+OK : filtre salarié
+OK : états financiers conservés dans le service/direction au moment du repas
+OK : mutation salarié ne déplace pas les anciens encaissements
+OK : connexion ROLE_ADMIN
+OK : ROLE_ADMIN /
+OK : ROLE_ADMIN /menus
+OK : ROLE_ADMIN /tickets
+OK : ROLE_ADMIN /statistiques
+OK : ROLE_ADMIN /export/pdf?debut=2026-11-24&fin=2026-11-24
+OK : signature fichier export
+OK : ROLE_ADMIN /export/xlsx?debut=2026-11-24&fin=2026-11-24
+OK : signature fichier export
+OK : exception datée vide ferme le menu
+OK : rétablissement hebdomadaire
+OK : upload photo et redirection
+OK : photo renommée et convertie JPEG
+OK : photo stockée lisible
+OK : photo accessible avec authentification
+OK : POST sans CSRF bloqué
+OK : admin /employes
+OK : admin /utilisateurs
+OK : admin /parametres
+OK : admin /journal
+OK : admin /horaires
+OK : admin /plats
+OK : admin /controle
+OK : admin /imprimer/ticket/4
+OK : admin /badge/1
+OK : admin /qr/ticket/4
+OK : connexion ROLE_RH
+OK : ROLE_RH /
+OK : ROLE_RH /menus
+OK : ROLE_RH /tickets
+OK : ROLE_RH /statistiques
+OK : ROLE_RH /export/pdf?debut=2026-11-24&fin=2026-11-24
+OK : signature fichier export
+OK : ROLE_RH /export/xlsx?debut=2026-11-24&fin=2026-11-24
+OK : signature fichier export
+OK : connexion ROLE_CANTINE
+OK : ROLE_CANTINE /
+OK : ROLE_CANTINE /menus
+OK : ROLE_CANTINE /tickets
+OK : ROLE_CANTINE POST interdit /tickets
+OK : ROLE_CANTINE POST interdit /employes
+OK : ROLE_CANTINE POST interdit /horaires
+OK : ROLE_CANTINE POST interdit /utilisateurs
+OK : connexion ROLE_COMPTABILITE
+OK : ROLE_COMPTABILITE /
+OK : ROLE_COMPTABILITE /menus
+OK : ROLE_COMPTABILITE /tickets
+OK : ROLE_COMPTABILITE /statistiques
+OK : ROLE_COMPTABILITE /export/pdf?debut=2026-11-24&fin=2026-11-24
+OK : signature fichier export
+OK : ROLE_COMPTABILITE /export/xlsx?debut=2026-11-24&fin=2026-11-24
+OK : signature fichier export
+OK : ROLE_COMPTABILITE POST interdit /tickets
+OK : ROLE_COMPTABILITE POST interdit /employes
+OK : ROLE_COMPTABILITE POST interdit /horaires
+OK : ROLE_COMPTABILITE POST interdit /utilisateurs
+OK : connexion ROLE_EMPLOYE
+OK : ROLE_EMPLOYE /
+OK : ROLE_EMPLOYE /menus
+OK : ROLE_EMPLOYE /tickets
+OK : salarié interdit /controle
+OK : salarié interdit /statistiques
+OK : salarié interdit /export/pdf
+OK : salarié interdit /horaires
+OK : salarié interdit /plats
+OK : salarié interdit /employes
+OK : salarié interdit /utilisateurs
+OK : salarié interdit /journal
+OK : salarié interdit /parametres
+OK : salarié interdit /badge/2
+OK : salarié interdit /imprimer/ticket/4
+OK : salarié interdit /qr/ticket/4
+OK : tickets des autres masqués
+OK : deux émissions simultanées : une seule réussit
+OK : deux validations simultanées : une seule réussit
+OK : concurrence PostgreSQL : un seul paiement et un seul repas
+RECETTE TERMINEE
+OK : nouveaux numéros : deux majuscules et quatre chiffres
+OK : numéros uniques, anciens conservés
+OK : connexion administrateur indépendante de la casse
+OK : bloc délivrance repliable natif
+OK : plats du jour proposés avant autres plats
+OK : informations société enregistrées
+OK : logo téléchargé
+OK : logo privé PNG accessible avec session
+OK : ticket 57 mm et logo
+OK : ticket 80 mm et logo
+OK : logo sur badge
+OK : API sans jeton refusée
+OK : connexion compte employé mobile
+OK : jeton mobile cryptographique
+OK : jeton jamais conservé en clair en base
+OK : employé retrouve uniquement ses deux tickets
+OK : identité société disponible au mobile
+OK : QR autre employé interdit
+OK : QR personnel mobile accessible
+OK : logo mobile authentifié
+OK : déconnexion mobile
+OK : jeton révoqué après déconnexion
+OK : compte administrateur refusé dans API employé
+OK : changement mot de passe invalide session mobile
+RECETTE V3 TERMINEE
+
+Contrôles complémentaires : navigateur Chromium, impression 57/80 mm, repli/dépli, mobile 390 px, logo, décodage QR.
+Flutter/Android : source fournie, SDK absent, compilation et analyse non exécutées.

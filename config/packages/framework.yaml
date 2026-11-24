@@ -1,0 +1,19 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    csrf_protection: true
+    session:
+        cookie_secure: auto
+        cookie_httponly: true
+        cookie_samesite: lax
+    router:
+        utf8: true
+    rate_limiter:
+        login:
+            policy: token_bucket
+            limit: 5
+            rate: { interval: '1 minute', amount: 5 }
+
+        mobile_login:
+            policy: sliding_window
+            limit: 5
+            interval: '2 minutes'

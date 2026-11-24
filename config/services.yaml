@@ -1,0 +1,14 @@
+parameters:
+    app.timezone: '%env(APP_TIMEZONE)%'
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $timezone: '%app.timezone%'
+    App\:
+        resource: '../src/'
+        exclude: '../src/{Kernel.php,Security/User.php}'
+    Doctrine\DBAL\Connection:
+        factory: ['App\Infrastructure\ConnectionFactory', 'create']
+        arguments: ['%env(resolve:DATABASE_URL)%']

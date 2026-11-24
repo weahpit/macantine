@@ -1,0 +1,1 @@
+<article class="card dish"><img src="{{ path('photo',{id:p.id}) }}" alt="{{ p.nom }}" width="600" height="360"><h3>{{ p.nom }}</h3><p>{{ p.description }}</p><p>{{ p.categorie_nom }}</p><strong>{{ p.prix_employe }} F employé</strong><p class="muted">Valeur publique {{ p.prix_public }} F · Subvention {{ p.prix_public - p.prix_employe }} F</p></article>
