@@ -15,5 +15,5 @@ framework:
 
         mobile_login:
             policy: sliding_window
-            limit: 5
+            limit: 20
             interval: '2 minutes'

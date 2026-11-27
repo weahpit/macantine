@@ -21,7 +21,7 @@ final class Evolution {
     'absence'=>"id $id,employe_id INTEGER NOT NULL REFERENCES employe(id),debut VARCHAR(19) NOT NULL,fin VARCHAR(19) NOT NULL,motif VARCHAR(150) NOT NULL",
     'encaissement'=>"id $id,ticket_id INTEGER NOT NULL UNIQUE REFERENCES ticket(id),consommation_id INTEGER NOT NULL UNIQUE REFERENCES consommation(id),employe_id INTEGER NOT NULL REFERENCES employe(id),date_encaissement VARCHAR(19) NOT NULL,agent_id INTEGER NOT NULL REFERENCES utilisateur(id),montant INTEGER NOT NULL CHECK(montant>=0),prix_public INTEGER NOT NULL,subvention INTEGER NOT NULL,categorie_nom VARCHAR(100) NOT NULL,mode_paiement VARCHAR(30) NOT NULL",
     'societe'=>"id INTEGER PRIMARY KEY CHECK(id=1),nom VARCHAR(150) NOT NULL DEFAULT '',adresse TEXT NOT NULL DEFAULT '',telephone VARCHAR(50) NOT NULL DEFAULT '',email VARCHAR(180) NOT NULL DEFAULT '',identifiant_fiscal VARCHAR(100) NOT NULL DEFAULT '',logo VARCHAR(80)",
-    'mobile_token'=>"id $id,utilisateur_id INTEGER NOT NULL REFERENCES utilisateur(id),token_hash VARCHAR(64) NOT NULL UNIQUE,password_fingerprint VARCHAR(64) NOT NULL,cree_le VARCHAR(19) NOT NULL,expire_le VARCHAR(19) NOT NULL",
+    'mobile_token'=>"id $id,utilisateur_id INTEGER REFERENCES utilisateur(id),employe_id INTEGER REFERENCES employe(id),token_hash VARCHAR(64) NOT NULL UNIQUE,password_fingerprint VARCHAR(64) NOT NULL,cree_le VARCHAR(19) NOT NULL,expire_le VARCHAR(19) NOT NULL",
     'evolution_schema'=>"version VARCHAR(30) PRIMARY KEY,applique_le VARCHAR(19) NOT NULL"
    ];
    foreach($defs as $table=>$cols){$this->db->executeStatement("CREATE TABLE IF NOT EXISTS $table ($cols)");}
@@ -52,6 +52,17 @@ final class Evolution {
     $this->db->executeStatement("UPDATE ticket SET statut='DISPONIBLE' WHERE statut='EXPIRE'");
     $this->db->executeStatement("UPDATE utilisateur SET role='ROLE_CANTINE' WHERE role IN ('ROLE_AGENT','ROLE_RESPONSABLE')");
     $this->db->insert('evolution_schema',['version'=>'cantine-v2','applique_le'=>date('Y-m-d H:i:s')]);
+   }
+   // Application mobile : connexion par téléphone + PIN à 4 chiffres (mobile-pin-v1).
+   foreach(['telephone VARCHAR(20)','pin_hash VARCHAR(255)','pin_echecs INTEGER NOT NULL DEFAULT 0','pin_bloque_jusqua VARCHAR(19)','pin_modifie_le VARCHAR(19)'] as $col){$this->db->executeStatement('ALTER TABLE employe ADD COLUMN IF NOT EXISTS '.$col);}
+   $this->db->executeStatement('CREATE UNIQUE INDEX IF NOT EXISTS uq_employe_telephone ON employe(telephone) WHERE telephone IS NOT NULL');
+   $this->db->executeStatement('ALTER TABLE mobile_token ALTER COLUMN utilisateur_id DROP NOT NULL');
+   $this->db->executeStatement('ALTER TABLE mobile_token ADD COLUMN IF NOT EXISTS employe_id INTEGER REFERENCES employe(id)');
+   $this->db->executeStatement('CREATE INDEX IF NOT EXISTS idx_mobile_token_employe ON mobile_token(employe_id)');
+   if(!$this->db->fetchOne("SELECT version FROM evolution_schema WHERE version='mobile-pin-v1'")){
+    // Les anciennes sessions (e-mail / mot de passe) ne sont plus acceptées par l'API mobile.
+    $this->db->executeStatement('DELETE FROM mobile_token WHERE employe_id IS NULL');
+    $this->db->insert('evolution_schema',['version'=>'mobile-pin-v1','applique_le'=>date('Y-m-d H:i:s')]);
    }
   });
  }

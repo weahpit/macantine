@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a4f0497-94e5-43be-88cf-64bfa0c9af65" name="Changes" comment="" />
+    <list default="true" id="8a4f0497-94e5-43be-88cf-64bfa0c9af65" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +18,9 @@
     <execution>
       <executable path="composer" />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -75,6 +81,24 @@
       <path value="$PROJECT_DIR$/vendor/symfony/security-core" />
       <path value="$PROJECT_DIR$/vendor/symfony/security-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/wmf" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="ProjectId" id="3MVFPGhXPgIFSHbjVxB89YgtyTK" />
@@ -96,7 +120,8 @@
     "TYPO3XliffLanguages": "af:Afrikaans;\nar:Arabic;\nbs:Bosnian;\nbg:Bulgarian;\nca:Catalan;\nch:Chinese (Simpl.);\ncs:Czech;\nda:Danish;\nde:German;\nel:Greek;\neo:Esperanto;\nes:Spanish;\net:Estonian;\neu:Basque;\nfa:Persian;\nfi:Finnish;\nfo:Faroese;\nfr:French;\nfr_CA:French (Canada);\ngl:Galician;\nhe:Hebrew;\nhi:Hindi;\nhr:Croatian;\nhu:Hungarian;\nis:Icelandic;\nit:Italian;\nja:Japanese;\nka:Georgian;\nkl:Greenlandic;\nkm:Khmer;\nko:Korean;\nlt:Lithuanian;\nlv:Latvian;\nms:Malay;\nnl:Dutch;\nno:Norwegian;\npl:Polish;\npt:Portuguese;\npt_BR:Brazilian Portuguese;\nro:Romanian;\nru:Russian;\nsk:Slovak;\nsl:Slovenian;\nsq:Albanian;\nsr:Serbian;\nsv:Swedish;\nth:Thai;\ntr:Turkish;\nuk:Ukrainian;\nvi:Vietnamese;\nzh:Chinese (Trad.)",
     "TYPO3XliffPathToExtensionLanguageFiles": "Resources/Private/Language/",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/DocsDev/Projets/macantine2",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/DocsDev/Projets/SNVLT",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -124,6 +149,9 @@
       <option name="presentableId" value="Default" />
       <updated>1795427807123</updated>
       <workItem from="1795427808091" duration="4033000" />
+      <workItem from="1795546220116" duration="3285000" />
+      <workItem from="1795592482350" duration="165000" />
+      <workItem from="1795684915010" duration="949000" />
     </task>
     <servers />
   </component>

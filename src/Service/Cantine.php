@@ -75,6 +75,12 @@ final class Cantine {
   $moneyFilter='';$moneyParams=[];foreach(['t.employe_id'=>$employee,'COALESCE(c.service_id,e.service_id)'=>$service,'COALESCE(c.direction_id,s.direction_id)'=>$direction,'t.categorie_id'=>$category] as $col=>$v){if($v){$moneyFilter.=' AND '.$col.'=?';$moneyParams[]=$v;}}
   $money=$this->db->fetchAllAssociative('SELECT x.*,t.numero,e.matricule,c.employe_nom,c.service_nom,c.direction_nom,c.plat_servi_nom'.$base.' JOIN encaissement x ON x.ticket_id=t.id JOIN consommation c ON c.id=x.consommation_id WHERE SUBSTRING(x.date_encaissement,1,10) BETWEEN ? AND ?'.$moneyFilter.' ORDER BY x.date_encaissement',array_merge($params,$moneyParams));
   $totals=['tickets'=>count($tickets),'repas'=>count($money),'encaisse'=>0,'public'=>0,'subvention'=>0];foreach($money as $m){$totals['encaisse']+=(int)$m['montant'];$totals['public']+=(int)$m['prix_public'];$totals['subvention']+=(int)$m['subvention'];}
-  return ['tickets'=>$tickets,'paiements'=>$money,'totaux'=>$totals,'debut'=>$start,'fin'=>$end];
+  // Montants par jour (jours avec émission ou encaissement) et cumul progressif sur la période.
+  $days=[];$blank=['tickets'=>0,'repas'=>0,'encaisse'=>0,'public'=>0,'subvention'=>0];
+  foreach($tickets as $t){$d=$t['date_emission'];$days[$d]??=$blank;$days[$d]['tickets']++;}
+  foreach($money as $m){$d=substr($m['date_encaissement'],0,10);$days[$d]??=$blank;$days[$d]['repas']++;$days[$d]['encaisse']+=(int)$m['montant'];$days[$d]['public']+=(int)$m['prix_public'];$days[$d]['subvention']+=(int)$m['subvention'];}
+  ksort($days);$cum=['repas'=>0,'encaisse'=>0,'public'=>0,'subvention'=>0];$jours=[];
+  foreach($days as $d=>$v){foreach($cum as $k=>$_){$cum[$k]+=$v[$k];}$jours[]=['jour'=>$d,'tickets_delivres'=>$v['tickets'],'repas_servis'=>$v['repas'],'encaisse_fcfa'=>$v['encaisse'],'valeur_publique_fcfa'=>$v['public'],'subvention_fcfa'=>$v['subvention'],'cumul_repas'=>$cum['repas'],'cumul_encaisse_fcfa'=>$cum['encaisse'],'cumul_valeur_publique_fcfa'=>$cum['public'],'cumul_subvention_fcfa'=>$cum['subvention']];}
+  return ['tickets'=>$tickets,'paiements'=>$money,'jours'=>$jours,'totaux'=>$totals,'debut'=>$start,'fin'=>$end];
  }
 }
